@@ -1,16 +1,16 @@
-import React from 'react';
+// import React from 'react';
 
-// import './title.css';
+// // import './title.css';
 
-class Description extends React.Component {
+// class Description extends React.Component {
 
-  render(){
-    return (
-      <div>
-        This is Description    
-      </div>
-    );
-  }
-}
+//   render(){
+//     return (
+//       <div>
+//         This is Description    
+//       </div>
+//     );
+//   }
+// }
 
-export default Description;
+// export default Description;

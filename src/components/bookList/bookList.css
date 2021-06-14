@@ -1,0 +1,56 @@
+.main-book-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.book-card{
+    margin-top: 30px;
+    text-align: left;
+    max-width: 176px;
+}
+
+.book-img{
+    width: 212px;
+    height: 300px;
+}
+
+.book-author{
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+    text-transform: capitalize;
+    color: #5C6A79;
+}
+
+.book-title{
+    margin-top: 4px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1C2A39;
+}
+
+.book-genre{
+    margin-top: 4px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+    color: #5C6A79;
+}
+
+.book-desc{
+    margin-top: 16px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+    text-transform: capitalize;
+    color: #5C6A79;
+}
