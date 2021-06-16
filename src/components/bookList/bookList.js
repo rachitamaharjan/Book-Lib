@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from "react-redux";
 import "./bookList.css"
+import { saveBookData } from '../../redux/action'
+
 // import { bookServiceCall } from '../bookServiceCall'
 
 
 // import './title.css';
 
-class Title extends React.Component {
+class BookList extends React.Component {
 
   constructor(){
     super()
@@ -20,17 +22,22 @@ class Title extends React.Component {
   }
 
   fetchBooks = () => {
-    fetch(`http://localhost:3000/api/books`)
+    const headers = { 
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${this.props.token}`
+    }
+    fetch(`http://localhost:3000/api/books`, { headers })
       .then(response => {
         return response.json()   //conversion to json
       }).then(books => {
         console.log('all details',books)
         books.map(book =>
-          this.setState({
-            ...this.state,
-            title: [...this.state.title, book.title]
-          })
-        )
+          this.props.saveBookData(books)
+          // this.setState({
+          //   ...this.state,
+          //   title: [...this.state.title, book.title]
+          // })
+          )
     })
   }
 
@@ -42,6 +49,7 @@ class Title extends React.Component {
   // }
 
   render(){
+    console.log('inside booklist')
     return (
       <div className = "main-book-container">
         {/* {this.state.title.map( book => { */}
@@ -70,7 +78,14 @@ class Title extends React.Component {
 const mapStateToProps = (state) => (
   {
       bookdata: state.bookdata,
+      token: state.token
   }
 )
 
-export default connect(mapStateToProps, 0)(Title);
+const mapDispatchToProps = dispatch => {
+  return {
+    saveBookData: (val) => dispatch(saveBookData(val)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);

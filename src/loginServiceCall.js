@@ -14,11 +14,7 @@ class ServiceCall extends React.Component {
   }
 
   fetchBooks = () => {
-    const headers = { 
-      'Content-Type': 'application/json',
-      'Authorization': `Token ${this.props.token}`
-    }
-    fetch(`http://localhost:3000/api/books`, { headers })
+    fetch(`http://localhost:3000/api/books`)
       .then(response => {
         return response.json()   //conversion to json
       }).then(books => {

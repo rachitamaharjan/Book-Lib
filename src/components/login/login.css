@@ -1,0 +1,13 @@
+.main-book-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.submit-btn{
+    background-color: #1D2343;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 5px 20px 5px 15px;
+    border-radius: 0 20px 20px 0;
+    height: 36px;
+}

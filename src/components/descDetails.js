@@ -1,16 +1,22 @@
-// import React from 'react';
+import React from 'react';
+import { connect } from "react-redux";
+import { saveBookData } from '../redux/action'
 
-// // import './title.css';
+class NavDescription extends React.Component {
 
-// class Description extends React.Component {
+  render(){
+    return (
+      <div>
+        Welcome, {this.props.username}    
+      </div>
+    );
+  }
+}
 
-//   render(){
-//     return (
-//       <div>
-//         This is Description    
-//       </div>
-//     );
-//   }
-// }
+const mapStateToProps = (state) => {
+  return{
+      username: state.username,
+  }
+}
 
-// export default Description;
+export default connect(mapStateToProps,0)(NavDescription);
