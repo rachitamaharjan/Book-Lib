@@ -1,14 +1,12 @@
 import React from 'react';
 import { connect } from "react-redux";
 import "./login.css"
-// import { bookServiceCall } from '../bookServiceCall'
 import {addToken} from '../../redux/action'
 import {addUsername} from '../../redux/action'
 import {addAdminInfo} from '../../redux/action'
 import { Link, Redirect } from 'react-router-dom';
-import history from '../../history';
+import auth from '../../auth.js'
 
-// import './title.css';
 
 class Login extends React.Component {
 
@@ -20,33 +18,20 @@ class Login extends React.Component {
     }
   }
 
-  componentDidMount(){
-    // this.fetchBooks()
-  }
-
   usernameOnChange = (e) => {
-    // console.log(e.target.value);
     this.setState({
       username: e.target.value
     })
   }
 
   passOnChange = (e) => {
-    // console.log(e.target.value);
     this.setState({
       password: e.target.value
     })
   }
 
-  onLogIn = () => {
-    // const history = useHistory();
+  onClick = () => {
     if (this.state.username !== '') {
-      // this.props.addUsername(this.state.username)
-      // this.props.addPassword(this.state.password)
-      // this.setState({
-      //   username: '',
-      //   password: '',
-      // })
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -58,15 +43,14 @@ class Login extends React.Component {
       fetch('http://127.0.0.1:3000/api/user/login', requestOptions)
           .then(response => response.json())
           .then(data => {
-            console.log(('hereeee', data));
-            // this.setState({ postId: data.id })
             this.props.addToken(data.token)
             this.props.addAdminInfo(data.is_admin)
             this.props.addUsername(this.state.username)
-            localStorage.setItem("is_admin",data.is_admin);
-            
-            // console.log('thishstory', this.props.history)
-            history.push("/books");
+            auth.login(() => {
+              localStorage.setItem("is_admin",data.is_admin);
+              console.log('local',localStorage.getItem("is_admin"))
+              this.props.history.push("/bookcall");
+            })
           });
     }
     else {
@@ -77,10 +61,13 @@ class Login extends React.Component {
 
   render(){
     return (
-      <div className = "login-container">
-        <input type = "text" className = "username" placeholder = "Username" value = {this.state.username} onChange = {this.usernameOnChange}/>
-        <input type = "password" className = "username" placeholder = "Password" value = {this.state.password} onChange = {this.passOnChange}/>
-        <button className = "submit-btn" onClick={this.onLogIn}>LOG IN</button>
+      <div className = "login-container-wrapper">
+        <div className = "login-container">
+          <div className='login-msg'>LOG IN</div>
+          <input type = "text" className = "username" placeholder = "Username" value = {this.state.username} onChange = {this.usernameOnChange}/>
+          <input type = "password" className = "password" placeholder = "Password" value = {this.state.password} onChange = {this.passOnChange}/>
+          <button className = "submit-btn" onClick={this.onClick}>Enter</button>
+        </div>
       </div>
     );
   }
