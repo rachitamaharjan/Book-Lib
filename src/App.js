@@ -3,39 +3,50 @@ import React from 'react';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router';
-import { Link, BrowserRouter, Switch } from 'react-router-dom';
+import { Link, BrowserRouter, Switch, Redirect, NavLink } from 'react-router-dom';
+import history from './history';
 
-import BookServiceCall from './bookServiceCall'
+
+// import BookServiceCall from './bookServiceCall'
 import BookList from './components/bookList/bookList'
 import NavDescription from './components/descDetails'
 import Login from './components/login/login'
+import AdminPage from './components/adminPage/adminPage'
 
 import './App.css';
-
+// localStorage.setItem("is_admin", null);
 class App extends React.Component {
+  
 
   render(){
+    let item = localStorage.getItem("is_admin");
+            // console.log('local', item)
     return (
-      <Provider store = {store}>
-        <BrowserRouter>
-        <div className = 'link-container'>
-          {/* <img src = {img} className = 'stuff-img' /> */}
-          <Link to={`/`} ><h2 className = 'main-title'>Home</h2></Link>
-          <Link to={`/books`} className="link-users"><h2 className = 'em-link'>Books</h2></Link>
-          <Link to={`/favourites`} className="link-gallery"><h2 className = 'gal-link'>Favourites</h2></Link>
-          <NavDescription/>   
-        </div>
-        <Switch>
-          {/* <BookServiceCall></BookServiceCall> */}
-          {/* <BookList></BookList> */}
-          <Route path="/login" component = {Login} />
-          <Route path="/books" component = {BookList} />
-          {/* <Route path="/register" component={BookList} /> */}
-          {/* <Route path="/books" component={BookServiceCall} /> */}
-          {/* <Route path="/" component = {Home} /> */}
-        </Switch>
-      </BrowserRouter>
-       
+        <Provider store = {store}>
+          <BrowserRouter history={history}>
+            {/* <div className = 'link-container'> */}
+              {/* <img src = {img} className = 'stuff-img' /> */}
+              <Link to={`/`} ><h2 className = 'main-title'>Home</h2></Link>
+              <Link to={`/books`} className="link-users"><h2 className = 'em-link'>Books</h2></Link>
+              <Link to={`/favourites`} className="link-gallery"><h2 className = 'gal-link'>Favourites</h2></Link>
+              <Link to={`/login`} className="link-gallery"><h2 className = 'gal-link'>login</h2></Link>
+              { item? <Link to={`/books/details`} className="link-gallery"><h2 className = 'gal-link'>details</h2></Link> : ''}
+              <NavDescription/>   
+            {/* </div> */}
+            {/* <Login/> */}
+            {/* <BookServiceCall/> */}
+            {/* <BookList/>
+            <AdminPage/> */}
+              <Switch>
+              <Route exact path="/login" component = {Login} />
+              <Route exact path="/books" component = {BookList} />
+              <Route exact path="/books/details" component = {AdminPage} />
+             {/* { is_admin? <Route exact path="/books/details" component = {AdminPage}/>} */}
+              {/* <Redirect to = '/' /> */}
+              {/* <Route path="/register" component={BookList} /> */}
+               {/* <Route exact path="/bookcall" component={BookServiceCall} />  */}
+              </Switch> 
+        </BrowserRouter>
       </Provider>
     );
   }

@@ -5,7 +5,8 @@ import "./login.css"
 import {addToken} from '../../redux/action'
 import {addUsername} from '../../redux/action'
 import {addAdminInfo} from '../../redux/action'
-
+import { Link, Redirect } from 'react-router-dom';
+import history from '../../history';
 
 // import './title.css';
 
@@ -38,6 +39,7 @@ class Login extends React.Component {
   }
 
   onLogIn = () => {
+    // const history = useHistory();
     if (this.state.username !== '') {
       // this.props.addUsername(this.state.username)
       // this.props.addPassword(this.state.password)
@@ -61,6 +63,10 @@ class Login extends React.Component {
             this.props.addToken(data.token)
             this.props.addAdminInfo(data.is_admin)
             this.props.addUsername(this.state.username)
+            localStorage.setItem("is_admin",data.is_admin);
+            
+            // console.log('thishstory', this.props.history)
+            history.push("/books");
           });
     }
     else {

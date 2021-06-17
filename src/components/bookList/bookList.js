@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import "./bookList.css"
 import { saveBookData } from '../../redux/action'
+// import history from '../../history';
 
 // import { bookServiceCall } from '../bookServiceCall'
 
@@ -18,27 +19,40 @@ class BookList extends React.Component {
   }
 
   componentDidMount(){
+    console.log('componentdidmount')
     this.fetchBooks()
   }
 
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   console.log("new props", prevProps);
+  //   // const { bookdata } = nextProps
+  //   if(this.props.bookdata && this.props.bookdata !== prevProps.bookdata){this.setState({
+  //       bookdata: this.props.bookdata,
+  //     })}
+  // }
+
   fetchBooks = () => {
-    const headers = { 
-      'Content-Type': 'application/json',
-      'Authorization': `Token ${this.props.token}`
-    }
-    fetch(`http://localhost:3000/api/books`, { headers })
-      .then(response => {
-        return response.json()   //conversion to json
-      }).then(books => {
-        console.log('all details',books)
-        books.map(book =>
-          this.props.saveBookData(books)
-          // this.setState({
-          //   ...this.state,
-          //   title: [...this.state.title, book.title]
-          // })
-          )
-    })
+    // if(this.props.token){
+
+      // const headers = { 
+      //   'Content-Type': 'application/json',
+      //   'Authorization': `Bearer ${this.props.token}`
+      // }
+      // fetch(`http://localhost:3000/api/books`, { headers })
+      fetch(`http://localhost:3000/api/books`)
+        .then(response => {
+          return response.json()   //conversion to json
+        }).then(books => {
+          console.log('all details',books)
+          // books.map(book =>
+            this.props.saveBookData(books)
+            // this.setState({
+            //   ...this.state,
+            //   title: [...this.state.title, book.title]
+            // })
+            // )
+      })
+    // }
   }
 
   // componentDidUpdate(){
@@ -49,7 +63,7 @@ class BookList extends React.Component {
   // }
 
   render(){
-    console.log('inside booklist')
+    console.log('inside booklist', this.props.token )
     return (
       <div className = "main-book-container">
         {/* {this.state.title.map( book => { */}
@@ -68,6 +82,7 @@ class BookList extends React.Component {
               <div className = "book-desc"> 
                 {book.description}
               </div>
+              {this.props.isadmin? <div>yes</div> : <div>no</div>}
             </div>  
         })}   
       </div>
@@ -78,7 +93,8 @@ class BookList extends React.Component {
 const mapStateToProps = (state) => (
   {
       bookdata: state.bookdata,
-      token: state.token
+      token: state.token,
+      is_admin: state.is_admin
   }
 )
 
