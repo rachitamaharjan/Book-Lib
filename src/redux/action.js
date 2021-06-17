@@ -19,6 +19,11 @@ export const addAdminInfo = (payload) => ({
   payload
 })
 
+export const addBook = (payload) => ({
+  type: 'ADD_BOOK',
+  payload
+})
+
 
 
 

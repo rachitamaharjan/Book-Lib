@@ -2,7 +2,8 @@ const initialState = {
     bookdata: [],
     token: '',
     username: '',
-    is_admin: null
+    is_admin: null,
+    new_book: null
 }
 
 export const mainReducer = (state = initialState, action) => {
@@ -19,6 +20,9 @@ export const mainReducer = (state = initialState, action) => {
 
         case 'ADD_ADMIN_INFO':
             return { ...state, is_admin: action.payload }
+
+        case 'ADD_BOOK':
+            return { ...state, new_book: action.payload }
 
         default:
             return state;

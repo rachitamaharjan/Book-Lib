@@ -64,3 +64,19 @@
 .btn-edit:hover, .btn-delete:hover{
     cursor: pointer;
 }
+
+.add-btn{
+    background-color: #588157;
+    width: 60px;
+    height: 40px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.add-btn:hover{
+    background-color: #79aa79;
+    cursor: pointer;
+}

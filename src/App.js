@@ -12,6 +12,8 @@ import BookList from './components/bookList/bookList'
 import NavBar from './components/navBar/navBar'
 import Login from './components/login/login'
 import AdminPage from './components/adminPage/adminPage'
+import AddBook from './components/addBook/addBook'
+import EditBook from './components/editBook/editBook'
 
 import './App.css';
 // localStorage.setItem("is_admin", null);
@@ -30,6 +32,8 @@ class App extends React.Component {
                 <Route exact path="/login" component = {Login} />
                 <Route exact path="/books" component = {BookList} />
                 <Route exact path="/books/details" component = {AdminPage} />
+                <Route exact path="/books/new" component = {AddBook} />
+                <Route exact path="/books/edit" component = {EditBook} />
               {/* { is_admin? <Route exact path="/books/details" component = {AdminPage}/>} */}
                 {/* <Redirect to = '/' /> */}
                 {/* <Route path="/register" component={BookList} /> */}

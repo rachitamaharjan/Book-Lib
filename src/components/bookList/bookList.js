@@ -23,6 +23,7 @@ class BookList extends React.Component {
                       </div>
                       <div className = "book-title"> 
                         {book.title} ☆
+                        {/* ★ */}
                       </div>
                       <div className = "book-genre"> 
                         Genre: {book.genre}

@@ -31,7 +31,7 @@ class Login extends React.Component {
   }
 
   onClick = () => {
-    if (this.state.username !== '') {
+    if (this.state.username !== '' && this.state.password !== '') {
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -64,8 +64,8 @@ class Login extends React.Component {
       <div className = "login-container-wrapper">
         <div className = "login-container">
           <div className='login-msg'>LOG IN</div>
-          <input type = "text" className = "username" placeholder = "Username" value = {this.state.username} onChange = {this.usernameOnChange}/>
-          <input type = "password" className = "password" placeholder = "Password" value = {this.state.password} onChange = {this.passOnChange}/>
+          <input type = "text" className = "username" placeholder = "Username" value = {this.state.username}  onChange = {this.usernameOnChange} name="fname" required/>
+          <input type = "password" className = "password" placeholder = "Password" value = {this.state.password}  onChange = {this.passOnChange} name="fname" required/>
           <button className = "submit-btn" onClick={this.onClick}>Enter</button>
         </div>
       </div>
