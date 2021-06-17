@@ -1,0 +1,66 @@
+.adminpage-container-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.adminpage-container{
+    font-family: Montserrat;
+    font-style: normal;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.adminpage-container th{
+    padding: 5px;
+    font-size: 16px;
+    background: #9E98DC;
+    min-width: 350px;
+    line-height: 30px;
+}
+
+.adminpage-container td{
+    padding: 5px;
+}
+
+.book-title-td{
+    font-size: 16px;
+    line-height: 20px;
+    color: #1C2A39;
+}
+
+.book-author-td{
+    font-family: Open Sans;
+}
+
+.btn-edit{
+    background-color: #1C2A39;
+}
+
+.btn-delete{
+    background-color: rgb(126, 48, 48);
+}
+
+.btn-delete:hover{
+    background-color: rgb(141, 66, 66);
+}
+
+.btn-edit:hover{
+    background-color: #304861;
+}
+
+.btn-edit, .btn-delete{
+    color: white;
+    width: 60px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.actions{
+    text-align: center;
+}
+
+.btn-edit:hover, .btn-delete:hover{
+    cursor: pointer;
+}

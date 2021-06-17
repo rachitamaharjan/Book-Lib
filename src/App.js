@@ -24,27 +24,16 @@ class App extends React.Component {
     return (
         <Provider store = {store}>
           <BrowserRouter history={history}>
-            {/* <div className = 'link-container'> */}
-              {/* <img src = {img} className = 'stuff-img' /> */}
-              {/* <Link to={`/`} ><h2 className = 'main-title'>Home</h2></Link>
-              <Link to={`/books`} className="link-users"><h2 className = 'em-link'>Books</h2></Link>
-              <Link to={`/favourites`} className="link-gallery"><h2 className = 'gal-link'>Favourites</h2></Link>
-              <Link to={`/login`} className="link-gallery"><h2 className = 'gal-link'>login</h2></Link> */}
               <NavBar/>   
-            {/* </div> */}
-            {/* <Login/> */}
-            {/* <BookServiceCall/> */}
-            {/* <BookList/>
-            <AdminPage/> */}
               <Switch>
-              <Route exact path="/" component = {Login} />
-              <Route exact path="/login" component = {Login} />
-              <Route exact path="/books" component = {BookList} />
-              <Route exact path="/books/details" component = {AdminPage} />
-             {/* { is_admin? <Route exact path="/books/details" component = {AdminPage}/>} */}
-              {/* <Redirect to = '/' /> */}
-              {/* <Route path="/register" component={BookList} /> */}
-               <Route exact path="/bookcall" component={BookServiceCall} /> 
+                <Route exact path="/" component = {Login} />
+                <Route exact path="/login" component = {Login} />
+                <Route exact path="/books" component = {BookList} />
+                <Route exact path="/books/details" component = {AdminPage} />
+              {/* { is_admin? <Route exact path="/books/details" component = {AdminPage}/>} */}
+                {/* <Redirect to = '/' /> */}
+                {/* <Route path="/register" component={BookList} /> */}
+                <Route exact path="/bookcall" component={BookServiceCall} /> 
               </Switch> 
         </BrowserRouter>
       </Provider>

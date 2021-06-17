@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import store from '../../redux/store';
-
+import './adminPage.css'
 
 
 class AdminPage extends React.Component {
@@ -12,34 +12,35 @@ class AdminPage extends React.Component {
 
   render(){
     return (
-      <div className = "adminpage-container">
-          <table>
-              <thead>
-                  <tr>
-                      <th>S. N.</th>
-                      <th>Title</th>
-                      <th>Genre</th>
-                      <th>Actions</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {this.props.bookdata.map( book => {
-                    console.log('this is inside admin', book)
-                        return <tr className = "book-card"> 
-                        <td className = "book-title"> 
-                            {book.title}
-                        </td>
-                        <td className = "book-author"> 
-                            {book.author}
-                        </td>
-                        <td className = "actions"> 
-                            <button type = "button" name = 'edit'>&#9998;</button>
-                            <button type = "button" name = 'delete'>&#10006;</button>
-                        </td>
-                        </tr>  
-                    })}   
-              </tbody>
-          </table>
+      <div className = "adminpage-container-wrapper">
+        <div className = "adminpage-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.bookdata.map( book => {
+                      console.log('this is inside admin', book)
+                          return <tr className = "book-card"> 
+                          <td className = "book-title-td"> 
+                              {book.title}
+                          </td>
+                          <td className = "book-author-td"> 
+                              {book.author}
+                          </td>
+                          <td className = "actions"> 
+                              <button type = "button" className = 'btn-edit'>&#9998;</button>
+                              <button type = "button" className = 'btn-delete'>&#10006;</button>
+                          </td>
+                          </tr>  
+                      })}   
+                </tbody>
+            </table>
+        </div>
       </div>
     );
   }

@@ -2,7 +2,13 @@ a{
     text-decoration: none;
 }
 
+.nav-bar-container-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
 .nav-bar-container{
+    min-width: 1050px;
     margin-top: 20px;
     font-family: Montserrat;
     font-style: normal;
@@ -16,7 +22,7 @@ a{
 }
 
 .nav-home{
-    margin-left: 50px;
+    /* margin-left: 50px; */
     text-transform: none;
     font-family: Montserrat;
     font-style: normal;
@@ -34,4 +40,8 @@ a{
     margin-left: 60px;
     display: flex;
     align-self: center;
+}
+
+.nav-login{
+    margin-left: 200%;
 }
