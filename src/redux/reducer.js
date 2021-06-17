@@ -1,5 +1,5 @@
 const initialState = {
-    bookdata: ["ok", {i: "o"}],
+    bookdata: [],
     token: '',
     username: '',
     is_admin: null

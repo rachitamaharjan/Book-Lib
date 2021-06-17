@@ -10,6 +10,27 @@ class AdminPage extends React.Component {
     super()
   }
 
+  onClickEdit = () => {
+
+  }
+
+  onClickDelete = (id) => {
+      const requestOptions = {
+        method: 'DELETE',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.props.token}`
+        }
+      };
+      fetch(`http://127.0.0.1:3000/api/books/delete/${id}`, requestOptions)
+          .then(response => response.json())
+          .then(data => {
+            console.log('data',data)
+            alert('Successfully Deleted')
+            this.state.history.push("/bookcall")
+          });
+  }
+
   render(){
     return (
       <div className = "adminpage-container-wrapper">
@@ -18,7 +39,7 @@ class AdminPage extends React.Component {
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Genre</th>
+                        <th>Author</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -33,8 +54,8 @@ class AdminPage extends React.Component {
                               {book.author}
                           </td>
                           <td className = "actions"> 
-                              <button type = "button" className = 'btn-edit'>&#9998;</button>
-                              <button type = "button" className = 'btn-delete'>&#10006;</button>
+                              <button type = "button" className = 'btn-edit' onClick={this.onClickEdit}>&#9998;</button>
+                              <button type = "button" className = 'btn-delete' onClick={this.onClickDelete.bind(this, book.id)}>&#10006;</button>
                           </td>
                           </tr>  
                       })}   
@@ -49,6 +70,7 @@ class AdminPage extends React.Component {
 const mapStateToProps = (state) => {
   return{
       bookdata: state.bookdata,
+      token: state.token
   }
 }
 

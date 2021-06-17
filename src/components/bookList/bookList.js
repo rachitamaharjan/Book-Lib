@@ -15,7 +15,6 @@ class BookList extends React.Component {
     return (
         <div className = "main-book-container-wrapper">
           <div className = "main-book-container">
-            {/* {this.state.title.map( book => { */}
             {this.props.bookdata.map( book => {
                 return (
                   <div className = "book-card"> 
@@ -23,7 +22,7 @@ class BookList extends React.Component {
                         {book.author}
                       </div>
                       <div className = "book-title"> 
-                        {book.title}
+                        {book.title} ☆
                       </div>
                       <div className = "book-genre"> 
                         Genre: {book.genre}
