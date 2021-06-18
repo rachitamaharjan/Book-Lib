@@ -38,7 +38,7 @@ class App extends React.Component {
   }
   
   render(){
-    let item = localStorage.getItem("is_admin");
+    let is_admin = localStorage.getItem("is_admin");
     let token = localStorage.getItem("token");
     console.log('token inside app',token)
             // console.log('local', item)

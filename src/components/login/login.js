@@ -52,7 +52,7 @@ class Login extends React.Component {
             auth.login(() => {
               localStorage.setItem("is_admin",data.is_admin);
               // localStorage.setItem("token",data.token);
-              // console.log('local',localStorage.getItem("token"))
+              console.log('local is admin',localStorage.getItem("is_admin"))
               this.props.history.push("/bookcall");
             })
           }).catch(function(err) {

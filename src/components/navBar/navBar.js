@@ -18,6 +18,7 @@ class NavBar extends React.Component {
 
   onClickLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("is_admin");
     this.setState({
       token: null
     })
@@ -27,6 +28,7 @@ class NavBar extends React.Component {
   }
 
   render(){
+    let is_admin = localStorage.getItem("is_admin");
     console.log('token value', localStorage.getItem("token"))
     return (
       <div className = 'nav-bar-container-wrapper'>
@@ -34,7 +36,10 @@ class NavBar extends React.Component {
           <Link to={`/`} ><h2 className = 'nav-home'>BookLib</h2></Link>
           <div className = 'nav-center'>
             <Link to={`/books`} className="nav-books center"><h2 className = 'em-link'>Books</h2></Link>
-            <Link to={`/books/favorite`} className="nav-fav center"><h2 className = 'gal-link'>Favourites</h2></Link>
+            { is_admin == 1 ? 
+            <Link to={`/books/details`} className="nav-fav center"><h2 className = 'gal-link'>Manage</h2></Link>
+            :
+             <Link to={`/books/favorite`} className="nav-fav center"><h2 className = 'gal-link'>Favourites</h2></Link>}
             {/* {(this.state.token === null) ?  */}
             {/* {(localStorage.getItem("token") == 0 || localStorage.getItem("token") == null || localStorage.getItem("token") == undefined) ?  */}
             {/* this.props.token == 0 || this.props.token == null || this.props.token == undefined */}
