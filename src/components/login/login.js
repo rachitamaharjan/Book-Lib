@@ -30,7 +30,8 @@ class Login extends React.Component {
     })
   }
 
-  onClick = () => {
+  onClick = (e) => {
+    e.preventDefault()
     if (this.state.username !== '' && this.state.password !== '') {
       const requestOptions = {
         method: 'POST',
@@ -55,13 +56,13 @@ class Login extends React.Component {
               this.props.history.push("/bookcall");
             })
           }).catch(function(err) {
+            // console.log(err)
             alert('Wrong Username or Password');
         });;
     }
     // else {
     //   alert("Could not log in 🤷 🤷‍♂️ !!");
     // }
-
 }
 
   render(){

@@ -4,6 +4,11 @@ export const saveBookData = (payload) => ({
   payload
 })
 
+export const saveFavBooks = (payload) => ({
+  type: 'SAVE_FAV_BOOKS',
+  payload
+})
+
 export const addToken = (payload) => ({
   type: 'ADD_TOKEN',
   payload

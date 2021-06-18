@@ -1,5 +1,6 @@
 const initialState = {
     bookdata: [],
+    favBookdata: [],
     token: '',
     username: '',
     is_admin: null,
@@ -11,6 +12,9 @@ export const mainReducer = (state = initialState, action) => {
 
         case 'SAVE_BOOK_DATA':
             return { ...state, bookdata: action.payload }
+
+        case 'SAVE_FAV_BOOKS':
+            return { ...state, favBookdata: action.payload }
 
         case 'ADD_TOKEN':
             return { ...state, token: action.payload }

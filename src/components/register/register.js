@@ -38,7 +38,8 @@ class Register extends React.Component {
     })
   }
 
-  onClick = () => {
+  onClick = (e) => {
+    e.preventDefault()
     if (this.state.username !== '' && this.state.password !== '' && this.state.email !== '') {
       const requestOptions = {
         method: 'POST',

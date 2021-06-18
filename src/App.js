@@ -9,6 +9,7 @@ import history from './history';
 
 import BookServiceCall from './bookServiceCall'
 import BookList from './components/bookList/bookList'
+import FavBookList from './components/favorites/favorites'
 import NavBar from './components/navBar/navBar'
 import Login from './components/login/login'
 import Register from './components/register/register'
@@ -52,6 +53,7 @@ class App extends React.Component {
                 {token ? '' : <Redirect to = '/login' /> }
                 {/* {(token == 0 || token == null || token == undefined)?  <Redirect to = '/login' /> : '' } */}
                 <Route exact path="/books" component = {BookList} />
+                <Route exact path="/books/favorite" component = {FavBookList} />
                 <Route exact path="/books/details" component = {AdminPage} />
                 <Route exact path="/books/new" component = {AddBook} />
                 <Route exact path="/books/edit" component = {EditBook} />
