@@ -47,7 +47,8 @@ class App extends React.Component {
               <Switch>
                 {/* <Route exact path="/" component = {Login} /> */}
                 <Route exact path="/login" component = {Login} />
-                {(token == 0 || token == null || token == undefined)?  <Redirect to = '/login' /> : '' }
+                {token ? '' : <Redirect to = '/login' /> }
+                {/* {(token == 0 || token == null || token == undefined)?  <Redirect to = '/login' /> : '' } */}
                 <Route exact path="/books" component = {BookList} />
                 <Route exact path="/books/details" component = {AdminPage} />
                 <Route exact path="/books/new" component = {AddBook} />

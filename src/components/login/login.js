@@ -55,7 +55,9 @@ class Login extends React.Component {
               // console.log('local',localStorage.getItem("token"))
               this.props.history.push("/bookcall");
             })
-          });
+          }).catch(function(err) {
+            alert(err);
+        });;
     }
     else {
       alert("Could not log in 🤷 🤷‍♂️ !!");
