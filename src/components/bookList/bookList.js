@@ -29,15 +29,9 @@ class BookList extends React.Component {
     fetch('http://127.0.0.1:3000/api/favorites', requestOptions)
         .then(response => response.json())
         .then(data => {
-            console.log(('added fav',data));
-            // this.setState({
-            //   is_added: 1
-            // })
-            // this.props.addBook(data)
-            // this.fetchData()
-            // this.props.history.push("/books/details")
+            // console.log(('added fav',data));
         }).catch(function(err) {
-          alert(err);
+          // console.log(err);
       });;
     
   }
@@ -57,8 +51,6 @@ class BookList extends React.Component {
                       <div className = "book-title"> 
                         {book.title} 
                         <span className = 'star-hollow visible' id = {book.id} onClick = {() => this.clickedHollowStar(book.id)}>☆</span>
-                        {/* <span className = 'star-fill invisible' id = {book.id + 1} onClick = {() => this.clickedFilledStar(book.id)}>★</span> */}
-                        {/* ★ */}
                       </div>
                       <div className = "book-genre"> 
                         Genre: {book.genre}

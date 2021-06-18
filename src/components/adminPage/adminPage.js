@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import store from '../../redux/store';
 import './adminPage.css'
 import {Redirect, Link, withRouter} from 'react-router-dom'
-// import history from '../../history'
 import {saveBookData} from '../../redux/action'
 
 class AdminPage extends React.Component {
@@ -57,8 +56,6 @@ class AdminPage extends React.Component {
 
   fetchData = () => {
     if(this.props.token){
-      // console.log('token', this.props.token)
-
       const headers = { 
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.props.token}`
@@ -71,10 +68,6 @@ class AdminPage extends React.Component {
   }
 
   onClickEditForm = () => {
-    // this.setState({
-    //   updating: 1
-    // })
-    // console.log('state1', this.state.updating)
     const requestOptions = {
       method: 'PATCH',
       headers: { 
@@ -91,22 +84,14 @@ class AdminPage extends React.Component {
     fetch(`http://127.0.0.1:3000/api/books/${this.state.edit_id}`, requestOptions)
         .then(response => response.json())
         .then(data => {
-            // console.log(('edited',data));
             this.setState({
               updating: 0
             })
-            // console.log('state1', this.state.updating)
-            // this.props.history.push("/books/details");
         });
         this.fetchData()
   }
 
-  componentDidMount = () => {
-    // console.log('inside did mount',this.props);
-  }
-
   onClickDelete = (id) => {
-    // console.log('history',this.props.history);
       const requestOptions = {
         method: 'DELETE',
         headers: { 
@@ -117,15 +102,10 @@ class AdminPage extends React.Component {
       fetch(`http://127.0.0.1:3000/api/books/${id}`, requestOptions)
           .then(response => response.json())
           .then(data => {
-            // console.log('data',data)
-            // alert('Successfully Deleted')
-            // console.log('history',this.props.history);
-            // this.props.history.push("/books")
             const newBookData = this.props.bookdata.filter( book => {
               return (book.id !== id)
             })
             this.props.saveBookData(newBookData)
-            // console.log('new??', newBookData)
           });
   }
 
@@ -168,10 +148,7 @@ class AdminPage extends React.Component {
                                 {book.author}
                             </td>
                             <td className = "actions"> 
-                                {/* <Link to = {`/books/edit`}> */}
-                                  {/* <button type = "button" className = 'btn-edit'>&#9998;</button> */}
                                   <button type = "button" className = 'btn-edit' onClick={() => this.onClickEdit(book)}>&#9998;</button>
-                                {/* </Link> */}
                                 <button type = "button" className = 'btn-delete' onClick={() => this.onClickDelete(book.id)}>&#10006;</button>
                             </td>
                             </tr>  
@@ -195,11 +172,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    // addToken: (token) => dispatch(addToken(token)),
-    // addUsername: (username) => dispatch(addUsername(username)),
     saveBookData: (newBookData) => dispatch(saveBookData(newBookData)),
   }
 }
 
-// export default AdminPage;
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminPage));

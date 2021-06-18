@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
 import "./editBook.css"
-// import {addToken} from '../../redux/action'
-// import {addUsername} from '../../redux/action'
-// import {addAdminInfo} from '../../redux/action'
 import { Link, Redirect } from 'react-router-dom';
 import BookServiceCall from '../../bookServiceCall';
 
@@ -66,7 +63,6 @@ class EditBook extends React.Component {
               this.setState({
                 is_changed: 1
               })
-              // this.props.history.push("/books/details");
           });
 
 }
@@ -100,13 +96,4 @@ const mapStateToProps = (state) => {
     }
   }
 
-// const mapDispatchToProps = dispatch => {
-//   return{
-//     addToken: (token) => dispatch(addToken(token)),
-//     addUsername: (username) => dispatch(addUsername(username)),
-//     addAdminInfo: (is_admin) => dispatch(addAdminInfo(is_admin)),
-//   }
-// }
-
-// export default AddBook;
 export default connect(mapStateToProps)(EditBook);

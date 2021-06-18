@@ -84,7 +84,6 @@ class AddBook extends React.Component {
       fetch('http://127.0.0.1:3000/api/books/add', requestOptions)
           .then(response => response.json())
           .then(data => {
-              // console.log(('added',data));
               this.setState({
                 is_added: 1
               })

@@ -51,12 +51,10 @@ class Login extends React.Component {
             console.log('inside login token',localStorage.getItem("token"))
             auth.login(() => {
               localStorage.setItem("is_admin",data.is_admin);
-              // localStorage.setItem("token",data.token);
               console.log('local is admin',localStorage.getItem("is_admin"))
               this.props.history.push("/bookcall");
             })
           }).catch(function(err) {
-            // console.log(err)
             alert('Wrong Username or Password');
         });;
     }

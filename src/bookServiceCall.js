@@ -18,7 +18,6 @@ class ServiceCall extends React.Component {
 
   fetchBooks = () => {
     if(this.props.token){
-      // console.log('token', this.props.token)
 
       const headers = { 
         'Content-Type': 'application/json',
@@ -33,7 +32,6 @@ class ServiceCall extends React.Component {
 
   render(){
     const is_admin = this.props.is_admin
-    // console.log('inside booklist', this.props.token )
     return(
         <div> 
             {this.props.is_admin?

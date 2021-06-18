@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './navBar.css'
+import {bookImg} from './book.png'
 
 class NavBar extends React.Component {
 
@@ -33,6 +34,8 @@ class NavBar extends React.Component {
     return (
       <div className = 'nav-bar-container-wrapper'>
         <div className = 'nav-bar-container'>
+          {/* <img src = './book.png' width = '48px' height = '48px'/> */}
+          <span className = 'img-book'></span>
           <Link to={`/`} ><h2 className = 'nav-home'>BookLib</h2></Link>
           <div className = 'nav-center'>
             <Link to={`/books`} className="nav-books center"><h2 className = 'em-link'>Books</h2></Link>
