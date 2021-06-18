@@ -18,26 +18,44 @@ import EditBook from './components/editBook/editBook'
 import './App.css';
 // localStorage.setItem("is_admin", null);
 class App extends React.Component {
-  
 
+  constructor(){
+    super()
+    this.state = {
+      loggedIn: false,
+      is_admin: localStorage.getItem("is_admin"),
+      token: localStorage.getItem("token"),
+    }
+  }
+  
+  componentDidMount(){
+    // this.setState({
+    //   is_admin: localStorage.getItem("is_admin"),
+    //   token: localStorage.getItem("token"),
+    // })
+  }
+  
   render(){
     let item = localStorage.getItem("is_admin");
+    let token = localStorage.getItem("token");
+    console.log('token inside app',token)
             // console.log('local', item)
     return (
         <Provider store = {store}>
           <BrowserRouter history={history}>
-              <NavBar/>   
+              <NavBar token= {token}/>   
               <Switch>
-                <Route exact path="/" component = {Login} />
+                {/* <Route exact path="/" component = {Login} /> */}
                 <Route exact path="/login" component = {Login} />
+                {(token == 0 || token == null || token == undefined)?  <Redirect to = '/login' /> : '' }
                 <Route exact path="/books" component = {BookList} />
                 <Route exact path="/books/details" component = {AdminPage} />
                 <Route exact path="/books/new" component = {AddBook} />
                 <Route exact path="/books/edit" component = {EditBook} />
               {/* { is_admin? <Route exact path="/books/details" component = {AdminPage}/>} */}
-                {/* <Redirect to = '/' /> */}
                 {/* <Route path="/register" component={BookList} /> */}
                 <Route exact path="/bookcall" component={BookServiceCall} /> 
+                {/* <Route exact path="/logout" component = {Logout} /> */}
               </Switch> 
         </BrowserRouter>
       </Provider>

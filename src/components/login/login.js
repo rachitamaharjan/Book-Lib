@@ -15,6 +15,7 @@ class Login extends React.Component {
     this.state = {
       username: '',
       password: '',
+      // loggedIn: false,
     }
   }
 
@@ -46,9 +47,12 @@ class Login extends React.Component {
             this.props.addToken(data.token)
             this.props.addAdminInfo(data.is_admin)
             this.props.addUsername(this.state.username)
+            localStorage.setItem("token",data.token);
+            console.log('inside login token',localStorage.getItem("token"))
             auth.login(() => {
               localStorage.setItem("is_admin",data.is_admin);
-              console.log('local',localStorage.getItem("is_admin"))
+              // localStorage.setItem("token",data.token);
+              // console.log('local',localStorage.getItem("token"))
               this.props.history.push("/bookcall");
             })
           });

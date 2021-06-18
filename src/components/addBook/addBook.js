@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import "./addBook.css"
 import {addBook} from '../../redux/action'
+import {saveBookData} from '../../redux/action'
 // import {addUsername} from '../../redux/action'
 // import {addAdminInfo} from '../../redux/action'
 import { Link, Redirect } from 'react-router-dom';
@@ -51,6 +52,21 @@ class AddBook extends React.Component {
   //   })
   // }
 
+  fetchData = () => {
+    if(this.props.token){
+      // console.log('token', this.props.token)
+
+      const headers = { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.props.token}`
+      }
+      fetch(`http://localhost:3000/api/books`, { headers })
+        .then(response => {
+          return response.json()   //conversion to json
+        }).then(books => { this.props.saveBookData(books) })
+    }
+  }
+  
   onClick = () => {
       const requestOptions = {
         method: 'POST',
@@ -68,19 +84,13 @@ class AddBook extends React.Component {
       fetch('http://127.0.0.1:3000/api/books/add', requestOptions)
           .then(response => response.json())
           .then(data => {
-              console.log(('added',data));
+              // console.log(('added',data));
               this.setState({
                 is_added: 1
               })
               this.props.addBook(data)
-              // this.props.history.push("/books/details");
-            // this.props.addAdminInfo(data.is_admin)
-            // this.props.addUsername(this.state.username)
-            // auth.login(() => {
-            //   localStorage.setItem("is_admin",data.is_admin);
-            //   console.log('local',localStorage.getItem("is_admin"))
-            //   this.props.history.push("/bookcall");
-            // })
+              this.fetchData()
+              this.props.history.push("/books/details")
           });
 
 }
@@ -88,9 +98,9 @@ class AddBook extends React.Component {
   render(){
     return (
       <div>
-        { this.state.is_added? 
-        <BookServiceCall/> 
-        :
+        {/* { this.state.is_added?  */}
+        {/* <BookServiceCall/>  */}
+        {/* : */}
         <div className = "login-container-wrapper">
           <div className = "login-container addbook-container">
             <div className='login-msg'>Add New Book</div>
@@ -101,7 +111,7 @@ class AddBook extends React.Component {
             <button className = "submit-btn" onClick={this.onClick}>Add</button>
           </div>
         </div>
-        }
+        {/* } */}
       </div>
     );
   }
@@ -116,6 +126,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return{
     addBook: (book) => dispatch(addBook(book)),
+    saveBookData: (val) => dispatch(saveBookData(val)),
   }
 }
 

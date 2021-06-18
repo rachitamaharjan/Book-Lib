@@ -55,11 +55,26 @@ class AdminPage extends React.Component {
     })
   }
 
+  fetchData = () => {
+    if(this.props.token){
+      // console.log('token', this.props.token)
+
+      const headers = { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.props.token}`
+      }
+      fetch(`http://localhost:3000/api/books`, { headers })
+        .then(response => {
+          return response.json()   //conversion to json
+        }).then(books => { this.props.saveBookData(books) })
+    }
+  }
+
   onClickEditForm = () => {
     // this.setState({
     //   updating: 1
     // })
-    console.log('state1', this.state.updating)
+    // console.log('state1', this.state.updating)
     const requestOptions = {
       method: 'PATCH',
       headers: { 
@@ -76,21 +91,22 @@ class AdminPage extends React.Component {
     fetch(`http://127.0.0.1:3000/api/books/${this.state.edit_id}`, requestOptions)
         .then(response => response.json())
         .then(data => {
-            console.log(('edited',data));
+            // console.log(('edited',data));
             this.setState({
               updating: 0
             })
-            console.log('state1', this.state.updating)
+            // console.log('state1', this.state.updating)
             // this.props.history.push("/books/details");
         });
+        this.fetchData()
   }
 
   componentDidMount = () => {
-    console.log('inside did mount',this.props);
+    // console.log('inside did mount',this.props);
   }
 
   onClickDelete = (id) => {
-    console.log('history',this.props.history);
+    // console.log('history',this.props.history);
       const requestOptions = {
         method: 'DELETE',
         headers: { 
@@ -101,15 +117,15 @@ class AdminPage extends React.Component {
       fetch(`http://127.0.0.1:3000/api/books/${id}`, requestOptions)
           .then(response => response.json())
           .then(data => {
-            console.log('data',data)
+            // console.log('data',data)
             // alert('Successfully Deleted')
-            console.log('history',this.props.history);
+            // console.log('history',this.props.history);
             // this.props.history.push("/books")
             const newBookData = this.props.bookdata.filter( book => {
               return (book.id !== id)
             })
             this.props.saveBookData(newBookData)
-            console.log('new??', newBookData)
+            // console.log('new??', newBookData)
           });
   }
 
@@ -143,7 +159,7 @@ class AdminPage extends React.Component {
                   </thead>
                   <tbody>
                       {this.props.bookdata.map( book => {
-                        console.log('this is inside admin', book)
+                        console.log('props inside admin', this.props)
                             return <tr className = "book-card"> 
                             <td className = "book-title-td"> 
                                 {book.title}
