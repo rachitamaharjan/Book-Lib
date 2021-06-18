@@ -11,6 +11,7 @@ import BookServiceCall from './bookServiceCall'
 import BookList from './components/bookList/bookList'
 import NavBar from './components/navBar/navBar'
 import Login from './components/login/login'
+import Register from './components/register/register'
 import AdminPage from './components/adminPage/adminPage'
 import AddBook from './components/addBook/addBook'
 import EditBook from './components/editBook/editBook'
@@ -47,6 +48,7 @@ class App extends React.Component {
               <Switch>
                 {/* <Route exact path="/" component = {Login} /> */}
                 <Route exact path="/login" component = {Login} />
+                <Route exact path="/register" component = {Register} />
                 {token ? '' : <Redirect to = '/login' /> }
                 {/* {(token == 0 || token == null || token == undefined)?  <Redirect to = '/login' /> : '' } */}
                 <Route exact path="/books" component = {BookList} />
